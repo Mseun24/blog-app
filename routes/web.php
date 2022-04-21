@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\UserAuth;
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Todo;
 
@@ -16,22 +17,25 @@ use App\Models\Todo;
 |
 */
 
+Route::resource('/blog', PostsController::class);
+Route::resource('/', PostsController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
-Route::get('/index', [TodoController::class, 'index']);
-Route::get('/create', [TodoController::class, 'create']);
-Route::post('/create1', [TodoController::class, 'create1']);
-Route::post('/upload', [TodoController::class, 'upload']);
-Route::get('/{id}/edit', [TodoController::class, 'edit']);
-Route::patch('/update', [TodoController::class, 'update']);
-Route::get('/{id}/completed', [TodoController::class, 'completed']);
-Route::get('/{id}/delete', [TodoController::class, 'delete']);
+// Route::get('/index', [TodoController::class, 'index']);
+// Route::get('/create', [TodoController::class, 'create']);
+// Route::post('/create1', [TodoController::class, 'create1']);
+// Route::post('/upload', [TodoController::class, 'upload']);
+// Route::get('/{id}/edit', [TodoController::class, 'edit']);
+// Route::patch('/update', [TodoController::class, 'update']);
+// Route::get('/{id}/completed', [TodoController::class, 'completed']);
+// Route::get('/{id}/delete', [TodoController::class, 'delete']);
 
 // Route::post('user', [UserAuth::class,'userLogin']);
 // // Route::view("login1", 'login1');

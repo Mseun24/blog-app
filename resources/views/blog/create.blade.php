@@ -1,31 +1,52 @@
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Website</title>
+<title>CREATE POST</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
-    <form action="" method="POST">
-    @csrf
-    <input type="text" 
-    name="title" 
-    placeholder="Title....." class=""><br>
+<div class="jumbotron">
+        <h2 style="text-align: center; font-family:serif; font-size:57px;">
+            Create Post
+ </h2>
+</div>
 
-    <textarea name="description" id="description" cols="30" rows="10"
-    class="">
-</textarea>
+@if ($errors->any())
+    <div class="container">
+        <ul>
+        @foreach ($errors->all() as $error )
+            <li>
+                {{ $errors }}
+            </li>
+            
+        @endforeach
 
-    <button type="submit" 
-    class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg
-    font-extrabold py-4 px-8 rounded-3xl"> 
-    Submit
-</button>
+        </ul>
+    
+@endif
 
-    </form>
-
-
-
+<div class="container">
+  <form action="/blog" method="POST" enctype="multipart/form-data">
+      @csrf
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" name="title" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Description:</label>
+      <textarea name="description" class="form-control" placeholder="Description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="title">Select a file:</label>
+      <input type="file" class="form-control" name="image">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Post</button>
+  </form>
+</div>
 </body>
 </html>
